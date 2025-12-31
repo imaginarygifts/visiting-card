@@ -142,6 +142,44 @@ body{
 .instagram-btn i{
   font-size:18px;
 }
+.whatsapp-greet-btn{
+  margin-top:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  background:#25D366;
+  color:#fff;
+  padding:14px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+  font-size:15px;
+}
+.whatsapp-greet-btn:hover{
+  opacity:0.9;
+}
+.floating-share{
+  position:fixed;
+  bottom:22px;
+  right:18px;
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:#000;
+  color:#fff;
+  border:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.4);
+  cursor:pointer;
+  z-index:9999;
+}
+.floating-share:hover{
+  background:#111;
+}
 </style>
 </head>
 
@@ -150,7 +188,7 @@ body{
 
   <!-- LOGO -->
   <div class="logo">
-    <img src="Logo.png" alt="Imaginary Gifts">
+    <img src="Logo.png">
   </div>
 
   <!-- NAME -->
@@ -180,6 +218,16 @@ body{
   <a class="instagram-btn" href="https://instagram.com/imaginarygifts.in" target="_blank">
   <i class="fab fa-instagram"></i>
   Follow Us on Instagram
+</a>
+
+<a class="primary-btn" href="imaginary-gifts-contact.vcf" download>
+  💾 Save Contact
+</a>
+
+<a class="whatsapp-greet-btn"
+   href="https://wa.me/917385235738?text=Hi%20Imaginary%20Gifts%20👋%0AI%20just%20saved%20your%20contact%20from%20your%20digital%20visiting%20card.%0ALooking%20forward%20to%20ordering!"
+   target="_blank">
+  💬 Say Hi on WhatsApp
 </a>
 
   <!-- ABOUT -->
@@ -230,5 +278,25 @@ body{
   </div>
 
 </div>
+<button class="floating-share" onclick="shareCard()" aria-label="Share Digital Card">
+  <i class="fa-solid fa-share-nodes"></i>
+</button>
+<script>
+function shareCard(){
+  const url = "https://imaginarygifts.github.io/DigitalVisitingCard_ImaginaryGifts/";
+  const text = "Check out Imaginary Gifts – Premium Personalized & Corporate Gifting";
+
+  if (navigator.share) {
+    navigator.share({
+      title: "Imaginary Gifts Digital Card",
+      text: text,
+      url: url
+    });
+  } else {
+    navigator.clipboard.writeText(url);
+    alert("Link copied! You can now share the digital card.");
+  }
+}
+</script>
 </body>
 </html>
