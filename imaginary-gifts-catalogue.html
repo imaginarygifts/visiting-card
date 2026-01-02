@@ -277,7 +277,6 @@ async function uploadToCloudinary(file){
 <script>
 async function orderNow(btn, product, category){
   const card = btn.closest('.card');
-
   const textInput = card.querySelector('input[type="text"]');
   const fileInput = card.querySelector('input[type="file"]');
 
@@ -286,17 +285,14 @@ async function orderNow(btn, product, category){
 
   let imageUrl = "Not uploaded";
 
+  // SHOW OVERLAY
+  document.getElementById("uploadOverlay").style.display = "flex";
+
   if(fileInput && fileInput.files.length > 0){
-    btn.innerText = "Uploading Image...";
-    btn.style.pointerEvents = "none";
-
     imageUrl = await uploadToCloudinary(fileInput.files[0]);
-
-    btn.innerText = "Order on WhatsApp";
-    btn.style.pointerEvents = "auto";
   }
 
-  let msg = `Hi Imaginary Gifts 👋
+  const msg = `Hi Imaginary Gifts 👋
 Category: ${category}
 Product: ${product}
 Custom Text: ${customText}
@@ -304,10 +300,48 @@ Custom Text: ${customText}
 📸 Uploaded Image:
 ${imageUrl}`;
 
-  const waUrl = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
-  window.open(waUrl);
+  // HIDE OVERLAY
+  document.getElementById("uploadOverlay").style.display = "none";
+
+  window.open(
+    "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg),
+    "_blank"
+  );
 }
 </script>
+<!-- UPLOADING OVERLAY -->
+<div id="uploadOverlay" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  z-index:99999;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  color:#fff;
+  font-family:Inter;
+">
+  <div style="
+    width:50px;
+    height:50px;
+    border:5px solid #333;
+    border-top:5px solid #25D366;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+  "></div>
 
+  <p style="margin-top:16px;font-size:14px;text-align:center;">
+    Uploading image…<br>
+    Please don’t go back
+  </p>
+</div>
+
+<style>
+@keyframes spin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+</style>
 </body>
 </html>
