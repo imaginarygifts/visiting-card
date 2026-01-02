@@ -253,29 +253,58 @@ function showCategory(cat){
   document.querySelectorAll('.'+cat).forEach(c=>c.classList.remove('hidden'));
   event.target.classList.add('active');
 }
+</script>
+<script>
+async function uploadToCloudinary(file){
+  const cloudName = "dpd2nhzrf";
+  const uploadPreset = "ig-upload";
 
-function orderNow(btn,product,category){
+  const url = `https://api.cloudinary.com/v1_1/${dpd2nhzrf}/image/upload`;
+
+  const formData = new FormData();
+  formData.append("file", file);
+  ig-upload", ig-upload);
+  const res = await fetch(url, {
+    method: "POST",
+    body: formData
+  });
+
+  const data = await res.json();
+  return data.secure_url;
+}
+</script>
+<script>
+async function orderNow(btn, product, category){
   const card = btn.closest('.card');
-  const text = card.querySelector('input[type="text"]')?.value || 'N/A';
+
+  const textInput = card.querySelector('input[type="text"]');
   const fileInput = card.querySelector('input[type="file"]');
-  const file = fileInput?.files[0];
+
+  const customText = textInput ? textInput.value : "N/A";
+  const phone = "917385235738";
+
+  let imageUrl = "Not uploaded";
+
+  if(fileInput && fileInput.files.length > 0){
+    btn.innerText = "Uploading Image...";
+    btn.style.pointerEvents = "none";
+
+    imageUrl = await uploadToCloudinary(fileInput.files[0]);
+
+    btn.innerText = "Order on WhatsApp";
+    btn.style.pointerEvents = "auto";
+  }
 
   let msg = `Hi Imaginary Gifts 👋
 Category: ${category}
 Product: ${product}
-Custom Text: ${text}`;
+Custom Text: ${customText}
 
-  const phone = "7385235738";
+📸 Uploaded Image:
+${imageUrl}`;
 
-  if(file){
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-    window.open(url);
-    setTimeout(()=>{
-      alert("Now attach the selected image in WhatsApp chat 👍");
-    },500);
-  }else{
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
-  }
+  const waUrl = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+  window.open(waUrl);
 }
 </script>
 
