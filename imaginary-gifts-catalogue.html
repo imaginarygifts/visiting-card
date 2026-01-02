@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Imaginary Gifts | Customised Gifts Catalogue</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter;
+  background:#000;
+  color:#fff;
+}
+
+/* HEADER */
+.header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#0b0b0b;
+  padding:12px;
+  text-align:center;
+  font-size:18px;
+  font-weight:600;
+  border-bottom:1px solid #222;
+}
+
+/* CATEGORY BAR */
+.category-bar{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding:10px;
+  background:#000;
+}
+.category-btn{
+  white-space:nowrap;
+  padding:8px 14px;
+  border-radius:20px;
+  background:#222;
+  color:#fff;
+  font-size:13px;
+  cursor:pointer;
+}
+.category-btn.active{
+  background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976);
+}
+
+/* CONTAINER */
+.container{
+  max-width:480px;
+  margin:auto;
+  padding:14px;
+}
+
+/* PRODUCT CARD */
+.card{
+  background:#1c1c1c;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:20px;
+}
+.card h3{
+  margin:0 0 8px;
+  font-size:16px;
+}
+
+/* IMAGE SCROLL */
+.images{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+}
+.images img{
+  width:90px;
+  height:90px;
+  border-radius:10px;
+  object-fit:cover;
+}
+
+/* FORM */
+label{
+  font-size:12px;
+  color:#aaa;
+  display:block;
+  margin-top:10px;
+}
+input, select{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  margin-top:4px;
+}
+
+/* ORDER BUTTON */
+.order-btn{
+  margin-top:14px;
+  display:block;
+  text-align:center;
+  background:#25D366;
+  color:#fff;
+  padding:14px;
+  border-radius:30px;
+  font-weight:600;
+  text-decoration:none;
+}
+
+/* HIDE */
+.hidden{display:none;}
+</style>
+</head>
+
+<body>
+
+<div class="header">🎁 Imaginary Gifts – Customised Catalogue</div>
+
+<!-- CATEGORY BAR -->
+<div class="category-bar">
+  <div class="category-btn active" onclick="showCategory('mug')">Mugs</div>
+  <div class="category-btn" onclick="showCategory('jewellery')">Jewellery</div>
+  <div class="category-btn" onclick="showCategory('lamp')">Night Lamps</div>
+  <div class="category-btn" onclick="showCategory('keychain')">Keychains</div>
+  <div class="category-btn" onclick="showCategory('frame')">Photo Frames</div>
+</div>
+
+<div class="container">
+
+<!-- ================= MUG ================= -->
+<div class="category mug">
+
+  <div class="card">
+    <h3>Magic Photo Mug</h3>
+
+    <div class="images">
+      <img src="https://via.placeholder.com/300">
+      <img src="https://via.placeholder.com/300">
+    </div>
+
+    <label>Enter Name / Message</label>
+    <input type="text" placeholder="Eg. Happy Birthday Rahul">
+
+    <label>Upload Photo</label>
+    <input type="file" accept="image/*">
+
+    <a class="order-btn" onclick="orderNow(this,'Magic Photo Mug','Mug')">
+      Order on WhatsApp
+    </a>
+  </div>
+
+</div>
+
+<!-- ================= JEWELLERY ================= -->
+<div class="category jewellery hidden">
+
+  <div class="card">
+    <h3>Personalised Name Pendant</h3>
+
+    <div class="images">
+      <img src="https://via.placeholder.com/300">
+    </div>
+
+    <label>Enter Name</label>
+    <input type="text" placeholder="Eg. Ritika">
+
+    <label>Upload Reference Image (Optional)</label>
+    <input type="file" accept="image/*">
+
+    <a class="order-btn" onclick="orderNow(this,'Name Pendant','Jewellery')">
+      Order on WhatsApp
+    </a>
+  </div>
+
+</div>
+
+<!-- ================= NIGHT LAMP ================= -->
+<div class="category lamp hidden">
+
+  <div class="card">
+    <h3>3D Photo Night Lamp</h3>
+
+    <div class="images">
+      <img src="https://via.placeholder.com/300">
+    </div>
+
+    <label>Enter Text</label>
+    <input type="text" placeholder="Eg. Forever Together">
+
+    <label>Upload Photo</label>
+    <input type="file" accept="image/*">
+
+    <a class="order-btn" onclick="orderNow(this,'3D Photo Lamp','Night Lamp')">
+      Order on WhatsApp
+    </a>
+  </div>
+
+</div>
+
+<!-- ================= KEYCHAIN ================= -->
+<div class="category keychain hidden">
+
+  <div class="card">
+    <h3>Photo Keychain</h3>
+
+    <div class="images">
+      <img src="https://via.placeholder.com/300">
+    </div>
+
+    <label>Upload Photo</label>
+    <input type="file" accept="image/*">
+
+    <a class="order-btn" onclick="orderNow(this,'Photo Keychain','Keychain')">
+      Order on WhatsApp
+    </a>
+  </div>
+
+</div>
+
+<!-- ================= FRAME ================= -->
+<div class="category frame hidden">
+
+  <div class="card">
+    <h3>Acrylic Glossy Photo Frame</h3>
+
+    <div class="images">
+      <img src="https://via.placeholder.com/300">
+    </div>
+
+    <label>Enter Caption</label>
+    <input type="text" placeholder="Eg. Best Memories">
+
+    <label>Upload Photos</label>
+    <input type="file" accept="image/*">
+
+    <a class="order-btn" onclick="orderNow(this,'Acrylic Photo Frame','Photo Frame')">
+      Order on WhatsApp
+    </a>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+function showCategory(cat){
+  document.querySelectorAll('.category').forEach(c=>c.classList.add('hidden'));
+  document.querySelectorAll('.category-btn').forEach(b=>b.classList.remove('active'));
+
+  document.querySelectorAll('.'+cat).forEach(c=>c.classList.remove('hidden'));
+  event.target.classList.add('active');
+}
+
+function orderNow(btn,product,category){
+  const card = btn.closest('.card');
+  const text = card.querySelector('input[type="text"]')?.value || 'N/A';
+  const fileInput = card.querySelector('input[type="file"]');
+  const file = fileInput?.files[0];
+
+  let msg = `Hi Imaginary Gifts 👋
+Category: ${category}
+Product: ${product}
+Custom Text: ${text}`;
+
+  const phone = "7385235738";
+
+  if(file){
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+    window.open(url);
+    setTimeout(()=>{
+      alert("Now attach the selected image in WhatsApp chat 👍");
+    },500);
+  }else{
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
+  }
+}
+</script>
+
+</body>
+</html>
